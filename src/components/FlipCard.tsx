@@ -11,9 +11,20 @@ interface FlipCardProps {
 
 export function FlipCard({ card, width, height }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
 
   const handleClick = () => {
-    setFlipped((prev) => !prev);
+    if (!flipped) {
+      // Flip to reveal first image (with animation + emoji burst)
+      setImageIndex(0);
+      setFlipped(true);
+    } else if (imageIndex < card.imageSrcs.length - 1) {
+      // Cycle to next image (no animation — flipped stays true, just swap src)
+      setImageIndex((prev) => prev + 1);
+    } else {
+      // After last image, flip back to backside (with animation)
+      setFlipped(false);
+    }
   };
 
   return (
@@ -35,7 +46,7 @@ export function FlipCard({ card, width, height }: FlipCardProps) {
         {/* Front face — revealed picture */}
         <div className="flip-card-front">
           <img
-            src={card.imageSrc}
+            src={card.imageSrcs[imageIndex]}
             alt={card.alt ?? "Valentine photo"}
             className="flip-card-image"
           />

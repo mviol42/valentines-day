@@ -32,9 +32,13 @@ App
 
 ### `FlipCard`
 
-- Manages flipped/unflipped state
+- Manages `flipped` (boolean) and `imageIndex` (number) state
 - CSS 3D transform for the flip animation (`rotateY(180deg)`)
-- On flip, triggers the `EmojiAnimation`
+- Click behavior cycles through three phases:
+  1. Back → first image: toggles `flipped` true (CSS transition fires, emoji burst)
+  2. Image → next image: increments `imageIndex` while `flipped` stays true (no CSS transition, instant swap)
+  3. Last image → back: toggles `flipped` false (CSS transition fires)
+- On first flip, triggers the `EmojiAnimation`
 
 ### `EmojiAnimation`
 
@@ -52,7 +56,7 @@ App
 ```typescript
 interface CardConfig {
   id: string;
-  imageSrc: string;
+  imageSrcs: string[];  // supports multiple images per card
   emoji: string;
   alt?: string;
 }
@@ -108,8 +112,8 @@ A single config file/array at the top of the project where images and emojis are
 
 ```typescript
 const cards: CardConfig[] = [
-  { id: "1", imageSrc: "/images/photo1.jpg", emoji: "❤️" },
-  { id: "2", imageSrc: "/images/photo2.jpg", emoji: "😍" },
+  { id: "1", imageSrcs: ["/images/photo1a.jpg", "/images/photo1b.jpg"], emoji: "❤️" },
+  { id: "2", imageSrcs: ["/images/photo2a.jpg"], emoji: "😍" },
   // ...
 ];
 ```

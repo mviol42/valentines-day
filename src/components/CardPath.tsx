@@ -7,10 +7,13 @@ interface CardPathProps {
 }
 
 /**
- * Build an SVG cubic-bezier path string that meanders through the
- * center of each card. Control points are placed at the vertical
- * midpoint between consecutive cards, using each card's own x so
- * the curve sweeps left/right naturally.
+ * Build an SVG cubic-bezier path with swoopy, nonlinear curves.
+ *
+ * - Diagonal / vertical segments get an S-curve: control points are
+ *   pushed sideways (alternating direction) so the line overshoots
+ *   before arriving at the next card.
+ * - Same-row segments (2-column layout) get a downward arc that dips
+ *   between the pair of cards.
  */
 function buildPath(
   centers: { cx: number; cy: number }[]
@@ -19,20 +22,35 @@ function buildPath(
   if (centers.length === 1)
     return `M ${centers[0].cx} ${centers[0].cy}`;
 
+  /** Horizontal overshoot for S-curves (viewBox x units, 0-100) */
+  const SWOOP_X = 10;
+  /** Vertical dip for same-row arcs (pixels) */
+  const ARC_DIP = 80;
+
   const parts: string[] = [];
   parts.push(`M ${centers[0].cx} ${centers[0].cy}`);
 
   for (let i = 1; i < centers.length; i++) {
     const prev = centers[i - 1];
     const curr = centers[i];
+    const dy = curr.cy - prev.cy;
+    const swoopDir = i % 2 === 0 ? 1 : -1;
 
-    // Control-point y is the vertical midpoint between the two cards
-    const midY = (prev.cy + curr.cy) / 2;
-
-    // Use cubic bezier: first control point keeps the previous card's
-    // x (so the line departs vertically), second control point keeps
-    // the next card's x (so the line arrives vertically).
-    parts.push(`C ${prev.cx} ${midY}, ${curr.cx} ${midY}, ${curr.cx} ${curr.cy}`);
+    if (Math.abs(dy) < 10) {
+      // Same-row pair: arc downward between the two cards
+      const dipY = prev.cy + ARC_DIP;
+      const cp1x = prev.cx + (curr.cx - prev.cx) * 0.25;
+      const cp2x = prev.cx + (curr.cx - prev.cx) * 0.75;
+      parts.push(`C ${cp1x} ${dipY}, ${cp2x} ${dipY}, ${curr.cx} ${curr.cy}`);
+    } else {
+      // Diagonal / vertical: S-curve with horizontal overshoot
+      const sx = SWOOP_X * swoopDir;
+      const cp1x = prev.cx + sx;
+      const cp1y = prev.cy + dy * 0.4;
+      const cp2x = curr.cx - sx;
+      const cp2y = prev.cy + dy * 0.6;
+      parts.push(`C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${curr.cx} ${curr.cy}`);
+    }
   }
 
   return parts.join(" ");

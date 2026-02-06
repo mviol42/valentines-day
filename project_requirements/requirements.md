@@ -14,9 +14,12 @@ A Valentine's Day gift website featuring interactive flip-card pictures with emo
 
 ### Flip Cards
 
-- Each picture starts face-down (hidden)
-- Clicking or tapping a card flips it over to reveal the picture
-- Flip animation should feel smooth and natural
+- Each card can contain multiple images
+- Each card starts face-down (hidden)
+- Clicking/tapping a face-down card plays a flip animation to reveal the first image
+- Subsequent clicks cycle through remaining images instantly (no animation)
+- After the last image, clicking flips the card back to the decorative backside (with animation)
+- The cycle repeats on the next click
 
 ### Emoji Animation
 

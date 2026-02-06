@@ -1,6 +1,6 @@
 export interface CardConfig {
   id: string;
-  imageSrc: string;
+  imageSrcs: string[];
   emoji: string;
   alt?: string;
 }
