@@ -70,7 +70,6 @@ export function FlipCard({ card, width, height }: FlipCardProps) {
             src={card.imageSrcs[imageIndex]}
             alt={card.alt ?? "Valentine photo"}
             className="flip-card-image"
-            style={card.imageFit === "cover" ? { objectFit: "cover" } : undefined}
           />
         </div>
       </div>

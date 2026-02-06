@@ -54,6 +54,5 @@ export const cards: CardConfig[] = [
     ],
     emoji: "💝",
     alt: "Conclusion",
-    imageFit: "cover",
   },
 ];
