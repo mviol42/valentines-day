@@ -11,12 +11,12 @@ const BOTTOM_PADDING = 200;
 
 function App() {
   const layout = useResponsiveLayout();
-  const { cardWidth, cardHeight, verticalSpacing, xMin, xMax } = layout;
+  const { cardWidth, cardHeight, verticalSpacing, xMin, xMax, columns } = layout;
 
   // Build position options object from the current layout
   const currentOptions: PositionOptions = useMemo(
-    () => ({ verticalSpacing, xMin, xMax }),
-    [verticalSpacing, xMin, xMax],
+    () => ({ verticalSpacing, xMin, xMax, columns }),
+    [verticalSpacing, xMin, xMax, columns],
   );
 
   // Store initial positions + the options they were generated with
@@ -30,7 +30,8 @@ function App() {
     if (
       prevOptions.current.verticalSpacing === currentOptions.verticalSpacing &&
       prevOptions.current.xMin === currentOptions.xMin &&
-      prevOptions.current.xMax === currentOptions.xMax
+      prevOptions.current.xMax === currentOptions.xMax &&
+      prevOptions.current.columns === currentOptions.columns
     ) {
       return positions;
     }

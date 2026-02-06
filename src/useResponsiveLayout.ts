@@ -6,6 +6,7 @@ export interface ResponsiveLayout {
   verticalSpacing: number;
   xMin: number;
   xMax: number;
+  columns: number;
 }
 
 /**
@@ -27,6 +28,7 @@ function computeLayout(width: number): ResponsiveLayout {
       verticalSpacing: 340,
       xMin: 25,
       xMax: 75,
+      columns: 1,
     };
   }
   if (width < 640) {
@@ -36,6 +38,7 @@ function computeLayout(width: number): ResponsiveLayout {
       verticalSpacing: 380,
       xMin: 22,
       xMax: 78,
+      columns: 1,
     };
   }
   if (width < 768) {
@@ -45,14 +48,36 @@ function computeLayout(width: number): ResponsiveLayout {
       verticalSpacing: 400,
       xMin: 20,
       xMax: 80,
+      columns: 1,
+    };
+  }
+  if (width < 1024) {
+    return {
+      cardWidth: 250,
+      cardHeight: 300,
+      verticalSpacing: 450,
+      xMin: 15,
+      xMax: 85,
+      columns: 1,
+    };
+  }
+  if (width < 1440) {
+    return {
+      cardWidth: 300,
+      cardHeight: 360,
+      verticalSpacing: 430,
+      xMin: 20,
+      xMax: 80,
+      columns: 2,
     };
   }
   return {
-    cardWidth: 250,
-    cardHeight: 300,
-    verticalSpacing: 450,
-    xMin: 15,
-    xMax: 85,
+    cardWidth: 340,
+    cardHeight: 400,
+    verticalSpacing: 470,
+    xMin: 18,
+    xMax: 82,
+    columns: 2,
   };
 }
 
@@ -74,7 +99,8 @@ export function useResponsiveLayout(): ResponsiveLayout {
         prev.cardHeight === next.cardHeight &&
         prev.verticalSpacing === next.verticalSpacing &&
         prev.xMin === next.xMin &&
-        prev.xMax === next.xMax
+        prev.xMax === next.xMax &&
+        prev.columns === next.columns
       ) {
         return prev;
       }
