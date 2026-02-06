@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { CardConfig } from "../types";
 import { EmojiAnimation } from "./EmojiAnimation";
 import "./FlipCard.css";
@@ -12,6 +12,20 @@ interface FlipCardProps {
 export function FlipCard({ card, width, height }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
+
+  // Preload the next image in the sequence so it's ready on click
+  useEffect(() => {
+    let nextSrc: string | undefined;
+    if (!flipped) {
+      nextSrc = card.imageSrcs[0];
+    } else if (imageIndex < card.imageSrcs.length - 1) {
+      nextSrc = card.imageSrcs[imageIndex + 1];
+    }
+    if (nextSrc) {
+      const img = new Image();
+      img.src = nextSrc;
+    }
+  }, [flipped, imageIndex, card.imageSrcs]);
 
   const handleClick = () => {
     if (!flipped) {

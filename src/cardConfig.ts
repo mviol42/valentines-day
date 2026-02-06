@@ -19,7 +19,7 @@ export const cards: CardConfig[] = [
       `${basePath}images/hilo/7E2AC520-5658-47AF-AF8C-E6B6C9C5D9AF_1_105_c.jpeg`,
       `${basePath}images/hilo/yup.jpg`,
       `${basePath}images/hilo/927A7910-4565-4AB2-988F-F8F43867022F_1_105_c.jpeg`,
-      `${basePath}images/hilo/Screenshot 2026-02-05 at 8.51.32 PM.png`,
+      `${basePath}images/hilo/Screenshot-2026-02-05.png`,
       `${basePath}images/hilo/934306C5-B7BF-4F03-9D02-E3121095666B_1_105_c.jpeg`,
     ],
     emoji: "🃏",
