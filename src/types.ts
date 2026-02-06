@@ -3,6 +3,7 @@ export interface CardConfig {
   imageSrcs: string[];
   emoji: string;
   alt?: string;
+  imageFit?: "contain" | "cover";
 }
 
 export interface CardPosition {

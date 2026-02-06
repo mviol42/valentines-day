@@ -16,10 +16,10 @@ export const cards: CardConfig[] = [
   {
     id: "2",
     imageSrcs: [
-      `${basePath}images/hilo/7E2AC520-5658-47AF-AF8C-E6B6C9C5D9AF_1_105_c.jpeg`,
-      `${basePath}images/hilo/yup.jpg`,
       `${basePath}images/hilo/934306C5-B7BF-4F03-9D02-E3121095666B_1_105_c.jpeg`,
       `${basePath}images/hilo/Screenshot-2026-02-05.png`,
+      `${basePath}images/hilo/7E2AC520-5658-47AF-AF8C-E6B6C9C5D9AF_1_105_c.jpeg`,
+      `${basePath}images/hilo/yup.jpg`,
     ],
     emoji: "🃏",
     alt: "Hilo",
@@ -54,5 +54,6 @@ export const cards: CardConfig[] = [
     ],
     emoji: "💝",
     alt: "Conclusion",
+    imageFit: "cover",
   },
 ];
