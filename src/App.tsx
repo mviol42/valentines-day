@@ -56,11 +56,8 @@ function App() {
       {/* Header section */}
       <div className="relative z-10 pt-8 sm:pt-10 pb-2 text-center px-4">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 drop-shadow-sm">
-          Happy Valentine's Day
+          Happy Valentine's Day 여자친구!!!
         </h1>
-        <p className="mt-2 text-sm sm:text-base text-pink-400 font-medium tracking-wide">
-          Tap each card to reveal a surprise
-        </p>
       </div>
 
       <CardPath
