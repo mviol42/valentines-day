@@ -54,7 +54,7 @@
 /* Front face — starts hidden (rotated 180deg), revealed on flip */
 .flip-card-front {
   transform: rotateY(180deg);
-  background-color: #fff;
+  background-color: #1a1a1a;
   border: 3px solid rgba(244, 114, 182, 0.3);
 }
 
@@ -104,8 +104,20 @@
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
 }
 
+/* Blurred background fill to replace white bars */
+.flip-card-image-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(20px) brightness(0.85);
+  transform: scale(1.1);
+}
+
 /* Photo image on the front face */
 .flip-card-image {
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: contain;

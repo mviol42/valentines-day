@@ -61,6 +61,12 @@ export function FlipCard({ card, width, height }: FlipCardProps) {
         <div className="flip-card-front">
           <img
             src={card.imageSrcs[imageIndex]}
+            alt=""
+            aria-hidden="true"
+            className="flip-card-image-bg"
+          />
+          <img
+            src={card.imageSrcs[imageIndex]}
             alt={card.alt ?? "Valentine photo"}
             className="flip-card-image"
           />
