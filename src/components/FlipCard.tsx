@@ -24,6 +24,7 @@ export function FlipCard({ card, width, height }: FlipCardProps) {
     if (nextSrc) {
       const img = new Image();
       img.src = nextSrc;
+      img.decode().catch(() => {});
     }
   }, [flipped, imageIndex, card.imageSrcs]);
 

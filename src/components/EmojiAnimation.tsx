@@ -95,16 +95,23 @@ export function EmojiAnimation({ emoji, trigger, width, height }: EmojiAnimation
     // Only spawn when trigger transitions from false to true (card flipped open)
     if (trigger && !prevTrigger.current) {
       animationKey.current += 1;
-      setParticles(spawnParticles(emoji, width, height));
+
+      // Delay particle spawn so the flip animation and image decode get priority
+      const spawnTimer = setTimeout(() => {
+        setParticles(spawnParticles(emoji, width, height));
+      }, 300);
 
       // Clean up particles after the longest possible animation finishes
-      // Max duration (2.6s) + max delay (0.5s) + small buffer = 3.5s
-      const timer = setTimeout(() => {
+      // 300ms spawn delay + max duration (2.6s) + max delay (0.5s) + buffer = 3.8s
+      const cleanupTimer = setTimeout(() => {
         setParticles([]);
-      }, 3500);
+      }, 3800);
 
       prevTrigger.current = trigger;
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(spawnTimer);
+        clearTimeout(cleanupTimer);
+      };
     }
 
     prevTrigger.current = trigger;
