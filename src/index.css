@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* Global mobile-friendly defaults */
+html {
+  /* Smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  /* Prevent horizontal overflow from absolutely-positioned cards
+     that might just barely exceed the viewport on narrow screens */
+  overflow-x: hidden;
+  /* Valentine's gradient background */
+  background: linear-gradient(
+    180deg,
+    #fff0f3 0%,
+    #fce7f3 15%,
+    #fdf2f8 40%,
+    #fff1f2 60%,
+    #fce7f3 80%,
+    #fdf2f8 100%
+  );
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Subtle floating hearts pattern overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(244, 114, 182, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(251, 113, 133, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 40% 70%, rgba(244, 114, 182, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 70% 85%, rgba(251, 113, 133, 0.05) 0%, transparent 50%);
+}
+
+/* Subtle decorative scattered dots (like confetti) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, rgba(244, 114, 182, 0.12) 1px, transparent 1px),
+    radial-gradient(circle, rgba(251, 113, 133, 0.10) 1px, transparent 1px),
+    radial-gradient(circle, rgba(236, 72, 153, 0.08) 1.5px, transparent 1.5px);
+  background-size: 80px 80px, 120px 120px, 160px 160px;
+  background-position: 0 0, 40px 40px, 80px 20px;
+}

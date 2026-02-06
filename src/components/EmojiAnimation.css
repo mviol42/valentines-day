@@ -1,0 +1,40 @@
+/* Emoji float-up animation — emojis rise, drift, rotate, shrink, and fade out */
+@keyframes emojiFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) scale(var(--emoji-scale, 1))
+      rotate(0deg);
+  }
+  8% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(var(--float-distance, -300px))
+      translateX(var(--drift, 0px))
+      scale(calc(var(--emoji-scale, 1) * 0.2))
+      rotate(var(--spin, 25deg));
+  }
+}
+
+/* Container for all emoji particles — overlays the card, allows overflow */
+.emoji-animation-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 50;
+}
+
+/* Individual emoji particle */
+.emoji-particle {
+  position: absolute;
+  animation-name: emojiFloat;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-fill-mode: forwards;
+  user-select: none;
+  will-change: transform, opacity;
+}
