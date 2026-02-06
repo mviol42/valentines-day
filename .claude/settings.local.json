@@ -9,7 +9,11 @@
       "Bash(npx vite build:*)",
       "mcp__ide__getDiagnostics",
       "Bash(git -C /Users/mike/git/valentines-day log --oneline -5)",
-      "Bash(git -C /Users/mike/git/valentines-day status --short)"
+      "Bash(git -C /Users/mike/git/valentines-day status --short)",
+      "Bash(sips:*)",
+      "Bash(for f in /Users/mike/git/valentines-day/public/images/gaming/IMG_0498.jpeg /Users/mike/git/valentines-day/public/images/general/IMG_0323.jpeg /Users/mike/git/valentines-day/public/images/general/IMG_7631.jpeg /Users/mike/git/valentines-day/public/images/general/FullSizeRender.jpeg /Users/mike/git/valentines-day/public/images/general/IMG_6114.jpeg)",
+      "Bash(do sips -Z 1200 -s formatOptions 80 \"$f\")",
+      "Bash(done)"
     ]
   }
 }
